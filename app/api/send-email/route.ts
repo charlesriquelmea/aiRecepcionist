@@ -14,7 +14,7 @@ export async function POST(request: Request) {
         
         const fromEmail = 'business@business.protolylat.com' //el que va
         /* const fromEmail = 'onboarding@resend.dev' */ // solo para pruebas
-
+ 
         if (!mailPrimero) {
             return NextResponse.json({ error: "ADMIN_EMAIL not configured" }, { status: 500 });
         }
