@@ -2,7 +2,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useCallback } from "react";
 import { content, type Lang } from "@/lib/content";
-import { X, ArrowLeft, Check } from "lucide-react";
+import { X, ArrowLeft, Check, Loader2 } from "lucide-react";
 
 interface MultiStepFormProps {
   lang: Lang;
@@ -18,6 +18,8 @@ type FormData = {
   whatsapp?: string;
   email?: string;
 };
+
+type SendStatus = "idle" | "sending" | "sent" | "error";
 
 const slideVariants = {
   enter: (dir: number) => ({
@@ -38,9 +40,27 @@ export function MultiStepForm({ lang, isOpen, onClose }: MultiStepFormProps) {
   const [direction, setDirection] = useState(1);
   const [formData, setFormData] = useState<FormData>({});
   const [textInput, setTextInput] = useState("");
+  const [sendStatus, setSendStatus] = useState<SendStatus>("idle");
 
   const totalSteps = steps.length;
   const progress = ((currentStep) / (totalSteps - 1)) * 100;
+
+  // ─── Send email when reaching the results step ───────────────────────────
+  const sendEmail = useCallback(async (data: FormData) => {
+    setSendStatus("sending");
+    try {
+      const res = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...data, lang }),
+      });
+      if (!res.ok) throw new Error("Request failed");
+      setSendStatus("sent");
+    } catch (err) {
+      console.error("Email send error:", err);
+      setSendStatus("error");
+    }
+  }, [lang]);
 
   const goNext = useCallback(() => {
     if (currentStep < totalSteps - 1) {
@@ -63,6 +83,7 @@ export function MultiStepForm({ lang, isOpen, onClose }: MultiStepFormProps) {
       setCurrentStep(0);
       setFormData({});
       setTextInput("");
+      setSendStatus("idle");
     }
   }, [isOpen]);
 
@@ -108,11 +129,26 @@ export function MultiStepForm({ lang, isOpen, onClose }: MultiStepFormProps) {
     });
   };
 
+  // ─── Text / tel / email step — last text step triggers email send ─────────
   const handleTextNext = () => {
     if (!textInput.trim()) return;
-    if (currentStep === 4) setFormData((d) => ({ ...d, name: textInput }));
-    else if (currentStep === 5) setFormData((d) => ({ ...d, whatsapp: textInput }));
-    else if (currentStep === 6) setFormData((d) => ({ ...d, email: textInput }));
+
+    let updatedData = { ...formData };
+
+    if (currentStep === 4) updatedData = { ...updatedData, name: textInput };
+    else if (currentStep === 5) updatedData = { ...updatedData, whatsapp: textInput };
+    else if (currentStep === 6) updatedData = { ...updatedData, email: textInput };
+
+    setFormData(updatedData);
+
+    // Step 6 is the last data-entry step → advance to results AND send email
+    const nextStep = currentStep + 1;
+    const isLastDataStep = steps[nextStep]?.type === "results";
+
+    if (isLastDataStep) {
+      sendEmail(updatedData);
+    }
+
     goNext();
   };
 
@@ -126,7 +162,7 @@ export function MultiStepForm({ lang, isOpen, onClose }: MultiStepFormProps) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-[100] bg-[#07070A]/95 backdrop-blur-xl flex flex-col"
+          className="fixed inset-0 z-100 bg-[#07070A]/95 backdrop-blur-xl flex flex-col"
         >
           {/* Progress bar */}
           <div className="absolute top-0 left-0 right-0 h-1 bg-white/5">
@@ -251,7 +287,7 @@ export function MultiStepForm({ lang, isOpen, onClose }: MultiStepFormProps) {
                             }`}
                           >
                             <span>{label}</span>
-                            {selected && <Check className="w-4 h-4 flex-shrink-0" />}
+                            {selected && <Check className="w-4 h-4 shrink-0" />}
                           </motion.button>
                         );
                       })}
@@ -303,7 +339,11 @@ export function MultiStepForm({ lang, isOpen, onClose }: MultiStepFormProps) {
                 {step.type === "results" && (
                   <div className="text-center">
                     <div className="w-14 h-14 rounded-full bg-[rgba(201,168,76,0.15)] border border-[#C9A84C] flex items-center justify-center mx-auto mb-6">
-                      <Check className="w-7 h-7 text-[#C9A84C]" />
+                      {sendStatus === "sending" ? (
+                        <Loader2 className="w-7 h-7 text-[#C9A84C] animate-spin" />
+                      ) : (
+                        <Check className="w-7 h-7 text-[#C9A84C]" />
+                      )}
                     </div>
                     {formData.name && (
                       <p className="font-sans text-[#C9A84C] text-sm mb-2">
@@ -316,6 +356,16 @@ export function MultiStepForm({ lang, isOpen, onClose }: MultiStepFormProps) {
                     <p className="font-sans text-[#6B6B7A] text-base leading-relaxed mb-10 max-w-sm mx-auto">
                       {isEn ? step.subtitleEn : step.subtitleEs}
                     </p>
+
+                    {/* Optional: subtle send status indicator */}
+                    {sendStatus === "error" && (
+                      <p className="font-sans text-xs text-red-400 mb-6">
+                        {isEn
+                          ? "There was an issue sending your info. Please contact us directly."
+                          : "Hubo un problema al enviar tu información. Contáctanos directamente."}
+                      </p>
+                    )}
+
                     <motion.a
                       href="https://wa.me/1234567890"
                       target="_blank"
