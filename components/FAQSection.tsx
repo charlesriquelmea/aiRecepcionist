@@ -52,7 +52,7 @@ export function FAQSection({ lang }: FAQProps) {
                   <motion.div
                     animate={{ rotate: isOpen ? 180 : 0 }}
                     transition={{ duration: 0.25 }}
-                    className="flex-shrink-0"
+                    className="shrink-0"
                   >
                     <ChevronDown className={`w-4 h-4 ${isOpen ? "text-[#C9A84C]" : "text-[#6B6B7A]"}`} />
                   </motion.div>

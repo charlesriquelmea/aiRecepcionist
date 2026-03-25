@@ -11,7 +11,7 @@ export function HowItWorks({ lang }: TimelineProps) {
   const isEn = lang === "en";
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
-  const steps = content.timeline.stepsEn;
+  const steps = content.timeline.steps;
 
   return (
     <section ref={ref} className="py-24 px-4 bg-[#0A0A0F]">
@@ -39,7 +39,7 @@ export function HowItWorks({ lang }: TimelineProps) {
                 className="relative flex items-start gap-6 pb-10 last:pb-0"
               >
                 {/* Circle */}
-                <div className="relative z-10 flex-shrink-0 w-12 h-12 rounded-full bg-[#0F0F14] border-2 border-[#C9A84C] flex items-center justify-center">
+                <div className="relative z-10 shrink-0 w-12 h-12 rounded-full bg-[#0F0F14] border-2 border-[#C9A84C] flex items-center justify-center">
                   <span className="font-serif font-bold text-[#C9A84C] text-base">{i + 1}</span>
                 </div>
 

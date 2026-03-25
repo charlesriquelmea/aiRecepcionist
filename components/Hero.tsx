@@ -63,7 +63,7 @@ export function Hero({ lang, onOpenForm }: HeroProps) {
         >
           {displayed}
           <span
-            className="inline-block w-[3px] h-[0.8em] bg-[#C9A84C] ml-1 align-middle"
+            className="inline-block w-0.75 h-[0.8em] bg-[#C9A84C] ml-1 align-middle"
             style={{ opacity: showCursor ? 1 : 0, transition: "opacity 0.1s" }}
           />
         </motion.h1>

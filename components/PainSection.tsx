@@ -13,7 +13,7 @@ export function PainSection({ lang }: PainSectionProps) {
   const isEn = lang === "en";
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
-  const points = isEn ? content.pain.pointsEn : content.pain.pointsEs;
+  const points = isEn ? content.pain.itemsEn : content.pain.itemsEs;
 
   return (
     <section
@@ -50,7 +50,7 @@ export function PainSection({ lang }: PainSectionProps) {
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="flex items-start gap-4 bg-[#0F0F14] border-l-2 border-[#DC2626] rounded-r-xl px-5 py-4"
             >
-              <X className="text-[#DC2626] w-5 h-5 mt-0.5 flex-shrink-0" />
+              <X className="text-[#DC2626] w-5 h-5 mt-0.5 shrink-0" />
               <p className="font-sans text-[#F5F5F0] text-base leading-relaxed">{point}</p>
             </motion.div>
           ))}

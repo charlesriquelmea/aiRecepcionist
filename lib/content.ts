@@ -107,7 +107,7 @@ export const content = {
         nameEn: "Quick Win",
         nameEs: "Quick Win",
         price: "$1,890",
-        originalPrice: undefined,
+        originalPrice: "$1,500",
         badgeEn: null,
         badgeEs: null,
         featuresEn: [
@@ -200,15 +200,7 @@ export const content = {
   timeline: {
     headlineEn: "How it works",
     headlineEs: "Cómo funciona",
-    /* TODO: cambiar a ingles */
-    stepsEn: [
-      { day: "Day 1", titleEn: "Discovery Call", titleEs: "Llamada de Descubrimiento", bodyEn: "We map your services, pricing, booking flow, and brand voice.", bodyEs: "Mapeamos tus servicios, precios, flujo de agendamiento y voz de marca." },
-      { day: "Days 2–3", titleEn: "Build & Train", titleEs: "Construcción y Entrenamiento", bodyEn: "We build the agent, train it on your clinical knowledge base, and wire all channels.", bodyEs: "Construimos el agente, lo entrenamos con tu base clínica y conectamos todos los canales." },
-      { day: "Days 4–5", titleEn: "Test & QA", titleEs: "Pruebas y Control de Calidad", bodyEn: "You test every scenario. We fix until satisfied. Zero surprises on launch.", bodyEs: "Pruebas cada escenario. Corregimos hasta que estés satisfecho. Sin sorpresas en el lanzamiento." },
-      { day: "Day 6–7", titleEn: "Go Live", titleEs: "Lanzamiento", bodyEn: "Agent goes live. We monitor the first 48h and hand you the keys.", bodyEs: "El agente sale en vivo. Monitoreamos las primeras 48h y te entregamos el control." },
-    ],
-
-    stepsEs: [
+    steps: [
       { day: "Day 1", titleEn: "Discovery Call", titleEs: "Llamada de Descubrimiento", bodyEn: "We map your services, pricing, booking flow, and brand voice.", bodyEs: "Mapeamos tus servicios, precios, flujo de agendamiento y voz de marca." },
       { day: "Days 2–3", titleEn: "Build & Train", titleEs: "Construcción y Entrenamiento", bodyEn: "We build the agent, train it on your clinical knowledge base, and wire all channels.", bodyEs: "Construimos el agente, lo entrenamos con tu base clínica y conectamos todos los canales." },
       { day: "Days 4–5", titleEn: "Test & QA", titleEs: "Pruebas y Control de Calidad", bodyEn: "You test every scenario. We fix until satisfied. Zero surprises on launch.", bodyEs: "Pruebas cada escenario. Corregimos hasta que estés satisfecho. Sin sorpresas en el lanzamiento." },
@@ -266,6 +258,8 @@ export const content = {
     subEs: "Limitamos los onboardings para garantizar calidad. Una vez tomados los cupos, abre la lista de espera.",
     ctaEn: "Claim Your Spot Now",
     ctaEs: "Reservar Mi Cupo Ahora",
+    trustEn: ["HIPAA Compliant", "Bilingual EN/ES", "Setup in 5–7 days", "No long-term contract"],
+    trustEs: ["Cumple HIPAA", "Bilingüe EN/ES", "Instalación en 5–7 días", "Sin contrato largo"],
   },
   footer: {
     taglineEn: "We install the system that closes while you sleep.",

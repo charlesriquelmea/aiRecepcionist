@@ -5,7 +5,7 @@ import { type Lang } from "@/lib/content";
 import { X, Check, TrendingDown, Users, Lock } from "lucide-react";
 
 // Savings mini-component for the competitive section
-function SavingsCallout({ isEn }: { isEn: boolean }) {
+/* function SavingsCallout({ isEn }: { isEn: boolean }) {
   const receptionist = 3200;
   const retainer = 697;
   const saving = receptionist - retainer;
@@ -29,6 +29,77 @@ function SavingsCallout({ isEn }: { isEn: boolean }) {
         <span className="font-sans text-sm font-bold text-emerald-400">${retainer}/mo</span>
       </div>
     </div>
+  );
+} */
+
+function SavingsCallout({ isEn }: { isEn: boolean }) {
+  const receptionist = 3200;
+  const retainer = 697;
+  const saving = receptionist - retainer;       // 2,503
+  const pct = Math.round((saving / receptionist) * 100); // 78
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 12 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, delay: 0.2 }}
+      viewport={{ once: true }}
+      className="mt-4 rounded-2xl border border-[rgba(201,168,76,0.2)] bg-[#0F0F14] px-5 py-4 space-y-3"
+    >
+      {/* Label */}
+      <p className="font-sans text-[10px] uppercase tracking-widest text-[#6B6B7A]">
+        💡 {isEn
+          ? "vs. hiring a bilingual receptionist in NJ"
+          : "vs. contratar una recepcionista bilingüe en NJ"}
+      </p>
+
+      {/* Human row */}
+      <div className="space-y-1">
+        <div className="flex justify-between text-xs">
+          <span className="text-[#F5F5F0]">
+            {isEn ? "Human hire" : "Empleada"}
+          </span>
+          <span className="text-[#DC2626] font-semibold">$3,200/mo</span>
+        </div>
+        <motion.div
+          className="h-1.5 rounded-full bg-[rgba(220,38,38,0.45)]"
+          initial={{ width: 0 }}
+          whileInView={{ width: "100%" }}
+          transition={{ duration: 0.9, delay: 0.15, ease: "easeOut" }}
+          viewport={{ once: true }}
+        />
+      </div>
+
+      {/* AI row */}
+      <div className="space-y-1">
+        <div className="flex justify-between text-xs">
+          <span className="text-[#F5F5F0]">Protolylat</span>
+          <span className="text-[#C9A84C] font-semibold">$697/mo</span>
+        </div>
+        <motion.div
+          className="h-1.5 rounded-full bg-[rgba(201,168,76,0.65)]"
+          initial={{ width: 0 }}
+          whileInView={{ width: "22%" }}
+          transition={{ duration: 0.9, delay: 0.35, ease: "easeOut" }}
+          viewport={{ once: true }}
+        />
+      </div>
+
+      {/* Savings callout */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.65, duration: 0.4 }}
+        viewport={{ once: true }}
+        className="text-center rounded-xl bg-[rgba(201,168,76,0.08)] border border-[rgba(201,168,76,0.25)] py-2 px-3"
+      >
+        <p className="font-sans text-[#C9A84C] font-bold text-xs">
+          {isEn
+            ? `You save $${saving.toLocaleString()}/mo — ${pct}% less`
+            : `Ahorrás $${saving.toLocaleString()}/mes — un ${pct}% menos`}
+        </p>
+      </motion.div>
+    </motion.div>
   );
 }
 
@@ -87,9 +158,9 @@ const copy = {
       titleEn: "Replaces payroll, not adds to it",
       titleEs: "Reemplaza nómina, no la incrementa",
       bodyEn:
-        "A bilingual NJ receptionist costs $3,200/mo. Our retainer is $697. The payback happens before the first invoice is paid.",
+        "A bilingual NJ receptionist costs $3,200/mo in salary alone — before taxes, benefits, or turnover. Our retainer is $697. The payback happens before the first invoice is paid.",
       bodyEs:
-        "Una recepcionista bilingüe en NJ cuesta $3,200/mes. Nuestro retainer es $697. El retorno de inversión ocurre antes de pagar la primera factura.",
+        "Una recepcionista bilingüe en NJ cuesta $3,200/mes solo en salario — sin impuestos, beneficios ni rotación. Nuestro retainer es $697. El retorno ocurre antes de que llegue la primera factura.",
       showSavings: true,
     },
     {
@@ -148,13 +219,13 @@ export function BenchmarkSection({ lang, onOpenForm }: BenchmarkProps) {
           <div className="grid grid-cols-3 bg-[#0F0F14]">
             <div className="p-4 border-r border-[rgba(255,255,255,0.06)]" />
             <div className="p-4 border-r border-[rgba(255,255,255,0.06)] flex items-center gap-2">
-              <X className="w-3.5 h-3.5 text-[#DC2626] flex-shrink-0" />
+              <X className="w-3.5 h-3.5 text-[#DC2626] shrink-0" />
               <span className="font-sans text-[11px] font-semibold text-[#6B6B7A] uppercase tracking-wider leading-tight">
                 {isEn ? copy.tableHeadSaas.en : copy.tableHeadSaas.es}
               </span>
             </div>
             <div className="p-4 flex items-center gap-2 bg-[rgba(201,168,76,0.05)]">
-              <Check className="w-3.5 h-3.5 text-[#C9A84C] flex-shrink-0" />
+              <Check className="w-3.5 h-3.5 text-[#C9A84C] shrink-0" />
               <span className="font-sans text-[11px] font-semibold text-[#C9A84C] uppercase tracking-wider leading-tight">
                 {isEn ? copy.tableHeadAI.en : copy.tableHeadAI.es}
               </span>
@@ -165,9 +236,8 @@ export function BenchmarkSection({ lang, onOpenForm }: BenchmarkProps) {
           {copy.rows.map((row, i) => (
             <div
               key={i}
-              className={`grid grid-cols-3 border-t border-[rgba(255,255,255,0.05)] ${
-                i % 2 === 0 ? "bg-[#07070A]" : "bg-[#0A0A0E]"
-              }`}
+              className={`grid grid-cols-3 border-t border-[rgba(255,255,255,0.05)] ${i % 2 === 0 ? "bg-[#07070A]" : "bg-[#0A0A0E]"
+                }`}
             >
               <div className="p-4 border-r border-[rgba(255,255,255,0.05)] flex items-center">
                 <span className="font-sans text-xs font-semibold text-[#F5F5F0] uppercase tracking-widest leading-tight">
@@ -210,7 +280,7 @@ export function BenchmarkSection({ lang, onOpenForm }: BenchmarkProps) {
                   transition={{ duration: 0.55, delay: i * 0.1 }}
                   className="rounded-2xl bg-[#0F0F14] border border-[rgba(255,255,255,0.07)] p-6 flex flex-col gap-4"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-[rgba(201,168,76,0.1)] flex items-center justify-center flex-shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-[rgba(201,168,76,0.1)] flex items-center justify-center shrink-0">
                     <Icon className="w-5 h-5 text-[#C9A84C]" />
                   </div>
                   <div>
@@ -220,7 +290,24 @@ export function BenchmarkSection({ lang, onOpenForm }: BenchmarkProps) {
                     <p className="font-sans text-xs text-[#6B6B7A] leading-relaxed">
                       {isEn ? uvp.bodyEn : uvp.bodyEs}
                     </p>
-                    {uvp.showSavings && <SavingsCallout isEn={isEn} />}
+                    {/* {uvp.showSavings && <SavingsCallout isEn={isEn} />} */}
+                    
+                    {uvp.showSavings && (
+                      <>
+                        <SavingsCallout isEn={isEn} />
+                        <motion.p
+                          initial={{ opacity: 0 }}
+                          whileInView={{ opacity: 1 }}
+                          transition={{ delay: 0.9, duration: 0.5 }}
+                          viewport={{ once: true }}
+                          className="font-sans text-[#C9A84C] font-bold text-xs text-center mt-3"
+                        >
+                          {isEn
+                            ? "The payback happens before the first invoice is paid."
+                            : "El retorno ocurre antes de que llegue la primera factura."}
+                        </motion.p>
+                      </>
+                    )}
                   </div>
                 </motion.div>
               );

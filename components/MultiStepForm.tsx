@@ -251,7 +251,7 @@ export function MultiStepForm({ lang, isOpen, onClose }: MultiStepFormProps) {
                             }`}
                           >
                             <span>{label}</span>
-                            {selected && <Check className="w-4 h-4 flex-shrink-0" />}
+                            {selected && <Check className="w-4 h-4 shrink-0" />}
                           </motion.button>
                         );
                       })}

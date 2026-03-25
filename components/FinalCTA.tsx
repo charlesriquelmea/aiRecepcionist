@@ -81,7 +81,7 @@ export function FinalCTA({ lang, onOpenForm }: FinalCTAProps) {
           className="flex flex-col sm:flex-row gap-6 justify-center items-center"
         >
           {/* TODO: descomentar cuando sepa que es */}
-          {/* {(isEn ? content.finalCta.trustEn : content.finalCta.trustEs).map((item, i) => {
+          {(isEn ? content.finalCta.trustEn : content.finalCta.trustEs).map((item, i) => {
             const Icon = trustIcons[i];
             return (
               <div key={i} className="flex items-center gap-2 text-sm text-[#6B6B7A]">
@@ -89,7 +89,7 @@ export function FinalCTA({ lang, onOpenForm }: FinalCTAProps) {
                 <span>{item}</span>
               </div>
             );
-          })} */}
+          })}
         </motion.div>
       </div>
     </section>
