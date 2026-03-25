@@ -166,7 +166,9 @@ export function PricingSection({ lang, onOpenForm }: PricingProps) {
           </motion.div>
 
           {/* Cards */}
-          <div className="flex overflow-x-auto gap-6 pb-4 snap-x snap-mandatory sm:grid sm:grid-cols-3 sm:overflow-visible">
+          {/* <div className="flex overflow-x-auto gap-6 pb-4 snap-x snap-mandatory sm:grid sm:grid-cols-3 sm:overflow-visible"> */}
+          <div className="flex overflow-x-auto gap-6 pb-4 pt-4 snap-x snap-mandatory
+           sm:grid sm:grid-cols-3 sm:overflow-visible">
             {content.pricing.plans.map((plan, i) => {
               const name = isEn ? plan.nameEn : plan.nameEs;
               const features = isEn ? plan.featuresEn : plan.featuresEs;
@@ -182,11 +184,16 @@ export function PricingSection({ lang, onOpenForm }: PricingProps) {
                   initial={{ opacity: 0, y: 30 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: i * 0.12 }}
-                  className={`
+                  /* className={` overflow-visible pt-5
                     relative shrink-0 w-72 sm:w-auto snap-center rounded-2xl p-7 flex flex-col gap-5
                     bg-[#0F0F14] border transition-all duration-300
                     ${plan.featured ? "border-[#C9A84C]" : plan.bestRoi ? "border-[rgba(201,168,76,0.5)]" : "border-[rgba(255,255,255,0.07)]"}
-                  `}
+                  `} */
+                  className={`
+          relative shrink-0 w-72 sm:w-auto snap-center rounded-2xl p-7 flex flex-col gap-5
+          bg-[#0F0F14] border transition-all duration-300 mt-3 sm:mt-0
+          ${plan.featured ? "border-[#C9A84C]" : plan.bestRoi ? "border-[rgba(201,168,76,0.5)]" : "border-[rgba(255,255,255,0.07)]"}
+        `}
                   style={
                     plan.bestRoi
                       ? { boxShadow: "0 0 40px rgba(201,168,76,0.18)" }
@@ -233,22 +240,22 @@ export function PricingSection({ lang, onOpenForm }: PricingProps) {
 
                   {/* Promo 2 interes - 2 cuotas */}
 
-                    <motion.div
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={inView ? { opacity: 1, y: 0 } : {}}
-                      transition={{ duration: 0.45, delay: 0.2 }}
-                      className="mt-3 rounded-xl border border-[rgba(201,168,76,0.3)] bg-[rgba(201,168,76,0.06)] px-4 py-3"
-                    >
-                      <p className="font-sans text-xs font-semibold text-[#E8D5B7]">
-                        {isEn ? "💳 2 interest-free payments" : "💳 2 cuotas sin interés"}
-                      </p>
-                      <p className="font-sans text-[10px] text-[#6B6B7A] mt-1">
-                        {isEn
-                          ? "50% upfront · 50% on delivery"
-                          : "50% al comenzar · 50% al entregar"}
-                      </p>
-                    </motion.div>
-                  
+                  <motion.div
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.45, delay: 0.2 }}
+                    className="mt-3 rounded-xl border border-[rgba(201,168,76,0.3)] bg-[rgba(201,168,76,0.06)] px-4 py-3"
+                  >
+                    <p className="font-sans text-xs font-semibold text-[#E8D5B7]">
+                      {isEn ? "💳 2 interest-free payments" : "💳 2 cuotas sin interés"}
+                    </p>
+                    <p className="font-sans text-[10px] text-[#6B6B7A] mt-1">
+                      {isEn
+                        ? "50% upfront · 50% on delivery"
+                        : "50% al comenzar · 50% al entregar"}
+                    </p>
+                  </motion.div>
+
 
                   {/* 1st Divider */}
                   <div className="border-t border-[rgba(255,255,255,0.06)]" />

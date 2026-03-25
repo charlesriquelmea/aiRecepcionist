@@ -147,15 +147,15 @@ export function BenchmarkSection({ lang, onOpenForm }: BenchmarkProps) {
           {/* Table header */}
           <div className="grid grid-cols-3 bg-[#0F0F14]">
             <div className="p-4 border-r border-[rgba(255,255,255,0.06)]" />
-            <div className="p-4 border-r border-[rgba(255,255,255,0.06)] flex items-center gap-2">
-              <X className="w-3.5 h-3.5 text-[#DC2626] flex-shrink-0" />
-              <span className="font-sans text-[11px] font-semibold text-[#6B6B7A] uppercase tracking-wider leading-tight">
+            <div className="p-4 border-r border-[rgba(255,255,255,0.06)] flex sm:items-center gap-2">
+              <X className="w-3.5 h-3.5 text-[#DC2626] shrink-0" />
+              <span className="font-sans text-[9px] sm:text-[11px] font-semibold text-[#6B6B7A] uppercase tracking-wider leading-tight">
                 {isEn ? copy.tableHeadSaas.en : copy.tableHeadSaas.es}
               </span>
             </div>
             <div className="p-4 flex items-center gap-2 bg-[rgba(201,168,76,0.05)]">
-              <Check className="w-3.5 h-3.5 text-[#C9A84C] flex-shrink-0" />
-              <span className="font-sans text-[11px] font-semibold text-[#C9A84C] uppercase tracking-wider leading-tight">
+              <Check className="w-3.5 h-3.5 text-[#C9A84C] shrink-0" />
+              <span className="font-sans text-[9px] sm:text-[11px] font-semibold text-[#C9A84C] uppercase tracking-wider leading-tight">
                 {isEn ? copy.tableHeadAI.en : copy.tableHeadAI.es}
               </span>
             </div>
@@ -170,7 +170,7 @@ export function BenchmarkSection({ lang, onOpenForm }: BenchmarkProps) {
               }`}
             >
               <div className="p-4 border-r border-[rgba(255,255,255,0.05)] flex items-center">
-                <span className="font-sans text-xs font-semibold text-[#F5F5F0] uppercase tracking-widest leading-tight">
+                <span className="font-sans text-[9px] sm:text-xs font-semibold text-[#F5F5F0] uppercase tracking-widest leading-tight">
                   {isEn ? row.dimension.en : row.dimension.es}
                 </span>
               </div>
@@ -210,7 +210,7 @@ export function BenchmarkSection({ lang, onOpenForm }: BenchmarkProps) {
                   transition={{ duration: 0.55, delay: i * 0.1 }}
                   className="rounded-2xl bg-[#0F0F14] border border-[rgba(255,255,255,0.07)] p-6 flex flex-col gap-4"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-[rgba(201,168,76,0.1)] flex items-center justify-center flex-shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-[rgba(201,168,76,0.1)] flex items-center justify-center shrink-0">
                     <Icon className="w-5 h-5 text-[#C9A84C]" />
                   </div>
                   <div>
