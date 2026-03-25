@@ -232,7 +232,7 @@ export function PricingSection({ lang, onOpenForm }: PricingProps) {
                   </div>
 
                   {/* Promo 2 interes - 2 cuotas */}
-                  {!isQuickWin &&
+
                     <motion.div
                       initial={{ opacity: 0, y: 8 }}
                       animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -248,7 +248,7 @@ export function PricingSection({ lang, onOpenForm }: PricingProps) {
                           : "50% al comenzar · 50% al entregar"}
                       </p>
                     </motion.div>
-                  }
+                  
 
                   {/* 1st Divider */}
                   <div className="border-t border-[rgba(255,255,255,0.06)]" />
