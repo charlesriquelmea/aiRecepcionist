@@ -174,8 +174,8 @@ export const content = {
       { day: "Day 1", titleEn: "Revenue Leak Audit", titleEs: "Auditoría de Fuga de Revenue" },
       { day: "Days 2–3", titleEn: "Architecture & Setup", titleEs: "Arquitectura y Configuración" },
       { day: "Day 4", titleEn: "Testing & Calibration", titleEs: "Pruebas y Calibración" },
-      { day: "Day 5", titleEn: "Go Live 🚀", titleEs: "Lanzamiento 🚀" },
-      { day: "Days 6–30", titleEn: "ROI War Room", titleEs: "ROI War Room" },
+      { day: "Day 7", titleEn: "Go Live 🚀", titleEs: "Lanzamiento 🚀" },
+      { day: "Days 8–30", titleEn: "ROI War Room", titleEs: "ROI War Room" },
     ],
   },
   guarantee: {

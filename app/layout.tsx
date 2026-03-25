@@ -20,6 +20,11 @@ export const metadata: Metadata = {
   description:
     'We install AI agent systems that capture, qualify, and book every lead in under 60 seconds. Serving NYC MedSpas and beyond.',
   generator: 'v0.app',
+
+  icons: {
+    icon: 'images/favicon.png',
+    apple: 'images/favicon.png',
+  },
 }
 
 export default function RootLayout({
