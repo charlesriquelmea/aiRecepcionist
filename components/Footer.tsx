@@ -29,7 +29,7 @@ export function Footer({ lang }: FooterProps) {
           </p>
 
           {/* Social links */}
-          <div className="flex items-center gap-5">
+{/*           <div className="flex items-center gap-5">
             <a
               href="https://linkedin.com"
               target="_blank"
@@ -46,7 +46,6 @@ export function Footer({ lang }: FooterProps) {
               className="text-[#6B6B7A] hover:text-[#C9A84C] transition-colors"
               aria-label="WhatsApp"
             >
-              {/* WhatsApp icon SVG */}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -63,7 +62,7 @@ export function Footer({ lang }: FooterProps) {
             >
               <Mail className="w-5 h-5" />
             </a>
-          </div>
+          </div> */}
 
           {/* Divider */}
           <div className="w-full border-t border-white/5" />

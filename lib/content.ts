@@ -168,8 +168,8 @@ export const content = {
     ],
   },
   timeline: {
-    headlineEn: "From zero to live in 5 days",
-    headlineEs: "De cero a operativo en 5 días",
+    headlineEn: "From zero to live in 5 days to 7 days",
+    headlineEs: "De cero a operativo en 5 días a 7 días",
     stepsEn: [
       { day: "Day 1", titleEn: "Revenue Leak Audit", titleEs: "Auditoría de Fuga de Revenue" },
       { day: "Days 2–3", titleEn: "Architecture & Setup", titleEs: "Arquitectura y Configuración" },
